@@ -5,8 +5,8 @@ module TimeSpanner
     include Enumerable
     include TimeUnits
 
-    attr_accessor :remaining, :units, :reverse
-    attr_reader   :to
+    attr_accessor :remaining, :units
+    attr_reader   :reverse, :to
 
     def_delegator :units, :each
 
@@ -15,7 +15,7 @@ module TimeSpanner
       @from    = reverse ? to : from
       @to      = reverse ? from : to
 
-      @remaining = @to.to_time.to_r - @from.to_time.to_r
+      @remaining = @to.to_r - @from.to_r
       @units     = units.map &:new
 
       calculate!

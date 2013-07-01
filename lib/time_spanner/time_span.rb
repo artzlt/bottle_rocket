@@ -9,7 +9,7 @@ module TimeSpanner
       validate! from, to
 
       units       = TimeUnitCollector.new(unit_names).units
-      @unit_chain = DurationChain.new(from, to, units)
+      @unit_chain = DurationChain.new(from.to_time, to.to_time, units)
 
       build!
     end
@@ -24,7 +24,9 @@ module TimeSpanner
     end
 
     def validate!(from, to)
-      raise InvalidClassError, "Must convert to Time object!" unless [from, to].all?{ |obj| obj.respond_to?(:to_time) && obj.to_time.is_a?(Time)}
+      unless [from, to].all? { |obj| obj.is_a?(Time) || (obj.respond_to?(:to_time) && obj.to_time.is_a?(Time)) }
+        raise InvalidClassError, "Must convert to Time object!"
+      end
     end
 
   end
