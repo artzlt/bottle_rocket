@@ -25,6 +25,19 @@ module TimeSpanner
         assert_equal 0, year.rest
       end
 
+      it 'calculates only rest (1 nanosecond in seconds)' do
+        from          = Time.parse '2012-06-25 00:00:00'
+        time_at_years = Time.parse '2013-06-25 00:00:00'
+        to            = Time.at time_at_years.to_r, -0.001
+        duration      = to.to_r - from.to_r
+        year          = Year.new
+
+        year.calculate duration, to
+
+        assert_equal 0, year.amount
+        assert year.rest > 0
+      end
+
       it 'calculates with rest (11 months in seconds)' do
         from     = Time.parse('2013-01-01 00:00:00')
         to       = Time.parse('2015-12-01 00:00:00')

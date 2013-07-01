@@ -25,6 +25,19 @@ module TimeSpanner
         assert_equal 0, minute.rest
       end
 
+      it 'calculates only rest (1 nanosecond in seconds)' do
+        from            = Time.parse '2012-06-12 01:12:23'
+        time_at_minutes = Time.parse '2012-06-12 01:12:24'
+        to              = Time.at time_at_minutes.to_r, -0.001
+        duration        = to.to_r - from.to_r
+        minute          = Minute.new
+
+        minute.calculate duration, to
+
+        assert_equal 0, minute.amount
+        assert minute.rest > 0
+      end
+
       it 'calculates with rest (999 nanoseconds in seconds)' do
         from           = Time.parse('2013-04-03 00:00:00')
         target_minutes = Time.parse('2013-04-03 00:02:00')

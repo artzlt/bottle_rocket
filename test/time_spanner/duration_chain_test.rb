@@ -37,23 +37,19 @@ module TimeSpanner
         assert chain.units.last.is_a?(Second)
       end
 
-      it 'calculates decades and succeeding units (ensures leap years are correctly calculated)' do
-        from = Time.parse('2013-01-01 00:00:00')
-        to   = Time.parse('2023-01-01 00:00:00')
+      it 'each calles for every unit' do
+        from  = Time.at(DateTime.parse('2013-06-17 12:34:56').to_time, 2216234.383)
+        to    = Time.at(DateTime.parse('5447-12-12 23:11:12').to_time, 3153476.737)
+        units = [Millennium, Century, Decade, Year, Month, Week, Day, Hour, Minute, Second, Millisecond, Microsecond, Nanosecond]
+        chain = DurationChain.new(from, to, units)
 
-        chain = DurationChain.new(from, to, [Decade, Year, Month, Week, Day, Hour, Minute, Second, Millisecond, Microsecond, Nanosecond])
+        yielded = []
+        chain.each{|u| yielded << u}
 
-        assert_equal 1, chain.units[0].amount
-        assert_equal 0, chain.units[1].amount
-        assert_equal 0, chain.units[2].amount
-        assert_equal 0, chain.units[3].amount
-        assert_equal 0, chain.units[4].amount
-        assert_equal 0, chain.units[5].amount
-        assert_equal 0, chain.units[6].amount
-        assert_equal 0, chain.units[7].amount
-        assert_equal 0, chain.units[8].amount
-        assert_equal 0, chain.units[9].amount
-        assert_equal 0, chain.units[10].amount
+        assert_equal units.size, yielded.size
+        units.each do |unit|
+          assert_kind_of unit, yielded.shift
+        end
       end
 
       describe 'one unit given' do
@@ -220,21 +216,6 @@ module TimeSpanner
           assert_equal 937, chain.units[10].amount
           assert_equal 242, chain.units[11].amount
           assert_equal 354, chain.units[12].amount
-        end
-
-        it 'each calles for every unit' do
-          from  = Time.at(DateTime.parse('2013-06-17 12:34:56').to_time, 2216234.383)
-          to    = Time.at(DateTime.parse('5447-12-12 23:11:12').to_time, 3153476.737)
-          units = [Millennium, Century, Decade, Year, Month, Week, Day, Hour, Minute, Second, Millisecond, Microsecond, Nanosecond]
-          chain = DurationChain.new(from, to, units)
-
-          yielded = []
-          chain.each{|u| yielded << u}
-
-          assert_equal units.size, yielded.size
-          units.each do |unit|
-            assert_kind_of unit, yielded.shift
-          end
         end
 
         it 'calculates only some of them' do

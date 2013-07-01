@@ -25,6 +25,19 @@ module TimeSpanner
         assert_equal 0, day.rest
       end
 
+      it 'calculates only rest (1 nanosecond in seconds)' do
+        from         = Time.parse '2012-06-12 23:00:00'
+        time_at_days = Time.parse '2012-06-13 23:00:00'
+        to           = Time.at time_at_days.to_r, -0.001
+        duration     = to.to_r - from.to_r
+        day          = Day.new
+
+        day.calculate duration, to
+
+        assert_equal 0, day.amount
+        assert day.rest > 0
+      end
+
       it 'calculates with rest' do
         from        = Time.parse('2013-04-03 00:00:00')
         target_days = Time.parse('2013-04-05 00:00:00')
