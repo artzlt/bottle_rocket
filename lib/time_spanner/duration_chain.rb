@@ -47,7 +47,7 @@ module TimeSpanner
       new_from = reverse? ? to : from
       new_to   = reverse? ? from : to
 
-      [new_from, new_to]
+      [ new_from, new_to ]
     end
 
   end

@@ -7,7 +7,7 @@ module TimeSpanner
         super 2
       end
 
-      # Overwrite!
+      # Override!
       def plural_name
         :centuries
       end
@@ -15,12 +15,12 @@ module TimeSpanner
 
       private
 
-      def calculate_amount(from, to)
-        (to.year - from.year) / 100
+      def calculate_amount from, to
+        ( to.year - from.year ) / 100
       end
 
       def at_amount
-        (from.to_datetime >> amount*1200).to_time
+        ( from.to_datetime >> amount * 1200 ).to_time
       end
 
     end

@@ -10,6 +10,6 @@ module TimeSpanner
       end
 
     end
-  end
 
+  end
 end

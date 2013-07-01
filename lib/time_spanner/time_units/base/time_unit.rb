@@ -5,13 +5,13 @@ module TimeSpanner
 
       attr_reader :multiplier
 
-      def initialize(position, multiplier)
+      def initialize position, multiplier
         super position
 
         @multiplier = multiplier
       end
 
-      def calculate(duration, to=nil)
+      def calculate duration, to = nil
         @duration = duration
 
         calculate_amount
@@ -22,7 +22,7 @@ module TimeSpanner
       private
 
       def calculate_amount
-        @amount = ((duration * multiplier).round(12)).to_i
+        @amount = ( ( duration * multiplier ).round 12 ).to_i
       end
 
       def calculate_rest
@@ -34,6 +34,6 @@ module TimeSpanner
       end
 
     end
-  end
 
+  end
 end

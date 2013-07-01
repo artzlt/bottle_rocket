@@ -10,12 +10,12 @@ module TimeSpanner
 
       private
 
-      def calculate_amount(from, to)
-        (to.year - from.year) / 1000
+      def calculate_amount from, to
+        ( to.year - from.year ) / 1000
       end
 
       def at_amount
-        (from.to_datetime >> amount*12000).to_time
+        ( from.to_datetime >> amount * 12000 ).to_time
       end
 
     end
