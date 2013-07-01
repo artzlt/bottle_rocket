@@ -1,3 +1,5 @@
+require 'date'
+require 'time'
 require 'forwardable'
 require 'time_spanner/errors'
 require 'time_spanner/time_units'

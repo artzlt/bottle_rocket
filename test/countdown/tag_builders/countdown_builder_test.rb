@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'time'
 
 module Countdown
   module TagBuilders
