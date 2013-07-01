@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 group :test do
-  if RUBY_PLATFORM =~ /(win32|w32)/
+  platforms :mswin, :mingw do
     gem 'win32console', '1.3.0'
   end
   gem 'minitest'
