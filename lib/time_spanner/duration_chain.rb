@@ -5,17 +5,15 @@ module TimeSpanner
     include Enumerable
     include TimeUnits
 
-    attr_accessor :remaining, :units
-    attr_reader   :reverse, :to
+    attr_accessor :remaining, :reverse, :units
+    attr_reader   :to
+    alias         :reverse? :reverse
 
     def_delegator :units, :each
 
-    def initialize(from, to, units)
-      @reverse = to < from
-      @from    = reverse ? to : from
-      @to      = reverse ? from : to
-
-      @remaining = @to.to_r - @from.to_r
+    def initialize from, to, units
+      @from, @to = setup_times from, to
+      @remaining = to.to_r - from.to_r
       @units     = units.map &:new
 
       calculate!
@@ -28,8 +26,15 @@ module TimeSpanner
       sort!
 
       each do |unit|
-        calculate_unit(unit)
+        calculate_unit unit
       end
+    end
+
+    def calculate_unit unit
+      unit.calculate remaining, to
+      unit.reverse! if reverse?
+
+      @remaining = unit.rest
     end
 
     # Units must be sorted to perform a correct calculation chain.
@@ -37,11 +42,12 @@ module TimeSpanner
       @units = units.sort
     end
 
-    def calculate_unit(unit)
-      unit.calculate remaining, to
-      unit.reverse! if reverse
+    def setup_times from, to
+      @reverse = to < from
+      new_from = reverse? ? to : from
+      new_to   = reverse? ? from : to
 
-      @remaining = unit.rest
+      [new_from, new_to]
     end
 
   end
