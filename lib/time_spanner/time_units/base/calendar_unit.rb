@@ -12,9 +12,9 @@ module TimeSpanner
       def calculate duration, to
         @to       = to
         @from     = @to - duration.to_r
-        @amount   = calculate_amount
 
-        calculate_rest at_amount
+        calculate_amount
+        calculate_rest at_amount( amount )
       end
 
 

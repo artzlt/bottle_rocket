@@ -13,23 +13,10 @@ module TimeSpanner
         assert_equal :millenniums, millennium.plural_name
       end
 
-      it 'calculates without rest' do
-        from       = Time.parse('2013-04-01 00:00:00')
-        to         = Time.parse('3013-04-01 00:00:00')
-        duration   = to.to_r - from.to_r
-        millennium = Millennium.new
-
-        millennium.calculate duration, to
-
-        assert_equal 1, millennium.amount
-        assert_equal 0, millennium.rest
-      end
-
       it 'calculates only rest (1 nanosecond in seconds)' do
         from                = Time.parse '2012-06-12 00:00:00'
         time_at_millenniums = Time.parse '3012-06-12 00:00:00'
         to                  = Time.at time_at_millenniums.to_r, -0.001
-        p :from => from, :to => to, :duration => (to.to_r - from.to_r)
         duration            = to.to_r - from.to_r
         millennium          = Millennium.new
 
@@ -62,6 +49,19 @@ module TimeSpanner
 
         assert_equal 2, millennium.amount
         assert_equal Rational(1152921504606847, 1152921504606846976000000), millennium.rest
+      end
+
+      it 'should not calculate amount of 2 although units equal' do
+        from                = Time.parse '2012-06-12 00:00:00'
+        time_at_millenniums = Time.parse '4012-06-12 00:00:00'
+        to                  = Time.at time_at_millenniums.to_r, -0.001
+        duration            = to.to_r - from.to_r
+        millennium          = Millennium.new
+
+        millennium.calculate duration, to
+
+        assert_equal 1, millennium.amount
+        assert millennium.rest > 0
       end
 
     end

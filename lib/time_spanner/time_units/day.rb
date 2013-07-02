@@ -11,10 +11,11 @@ module TimeSpanner
       private
 
       def calculate_amount
-        ( to.to_time - from.to_time ).to_i / 86400
+        amount  = ( to.to_time - from.to_time ).to_i / 86400
+        @amount = at_amount( amount ) > to ? amount - 1 : amount
       end
 
-      def at_amount
+      def at_amount amount
         ( from.to_datetime + amount ).to_time
       end
 

@@ -11,10 +11,11 @@ module TimeSpanner
       private
 
       def calculate_amount
-        ( ( to.to_datetime - from.to_datetime ) / 7 ).to_i
+        amount  = ( ( to.to_datetime - from.to_datetime ) / 7 ).to_i
+        @amount = at_amount( amount ) > to ? amount - 1 : amount
       end
 
-      def at_amount
+      def at_amount amount
         ( from.to_datetime + amount * 7 ).to_time
       end
 

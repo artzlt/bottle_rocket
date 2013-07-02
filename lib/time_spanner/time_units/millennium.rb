@@ -11,15 +11,12 @@ module TimeSpanner
       private
 
       def calculate_amount
-        ( ( to.year - from.year ) / 1000 ) - ( true ? 0 : 1 )
+        amount  = ( to.year - from.year ) / 1000
+        @amount = at_amount( amount ) > to ? amount - 1 : amount
       end
 
-      def at_amount
+      def at_amount amount
         ( from.to_datetime >> amount * 12000 ).to_time
-      end
-
-      def rest_less_than_1_millennium?
-        ( to.to_r - at_amount.to_r ) < 31556952000
       end
 
     end
