@@ -22,7 +22,7 @@ module TimeSpanner
       private
 
       def calculate_amount
-        @amount = ( ( duration * multiplier ).round 12 ).to_i
+        @amount = ( ( duration * multiplier ).round 13 ).to_i
       end
 
       def calculate_rest
