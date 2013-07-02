@@ -40,7 +40,7 @@ Be sure to add `countdown.js` to your layout file:
 ## Usage
 
 ```ruby
- <%= countdown to: Time.now + 28.hours %>
+ <%= countdown from: Time.now + 28.hours %>
 ```
 results in a countdown like this:
 
@@ -50,12 +50,12 @@ results in a countdown like this:
 
 or to count down from another time than now:
 ```ruby
- <%= countdown( from: Time.parse( '2012-09-27 01:07:00'), to: Time.now - 2.months  ) %>
+ <%= countdown to: Time.now - 2.months, from: Time.parse '2012-09-27 01:07:00' %>
 ```
 
 The countdown is updated every second and the generated html looks like this:
 
-```ruby
+```html
 <div class="countdown">
   <span class="days">
     <span class="day unit-1">1</span>
@@ -149,7 +149,7 @@ Defaults to <pre>true</pre>.
 For a reverse countdown starting at 00:00:00 use the countup method using the same options:
 
 ```ruby
- <%= countup 1.hour, step: :seconds %>
+ <%= countup from: Time.now to: Time.now + 1.hour %>
 ```
 
 ## TODO:
