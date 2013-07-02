@@ -1,5 +1,5 @@
 # encoding: UTF-8
-# TODO: 'railsify' only here -> force Rails DateTime objects to convert to time; safe_buffer
+# TODO: 'railsify' only here -> safe_buffer
 
 module Countdown
   module TagBuilders

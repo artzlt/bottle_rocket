@@ -52,14 +52,25 @@ It is updated every second and the generated html looks like this:
 
 ```ruby
 <div class="countdown">
-  <span class="days day_001">1</span>
-  <span class="day-separator">d</span>
-  <span class="hours hour_03">03</span>
-  <span class="hour-separator">h</span>
-  <span class="minutes minute_59">59</span>
-  <span class="minute-separator">m</span>
-  <span class="seconds second_59">59</span>
-  <span class="minute-separator">s</span>
+  <span class="days">
+    <span class="day unit-1">1</span>
+    <span class="separator days">d</span>
+  </span>
+  <span class="hours">
+    <span class="hour unit-0">0</span>
+    <span class="hour unit-3">3</span>
+    <span class="separator hours">h</span>
+  </span>
+  <span class="minutes">
+    <span class="minute unit-5">5</span>
+    <span class="minute unit-9">9</span>
+    <span class="separator minutes">m</span>
+  </span>
+  <span class="seconds">
+    <span class="second unit-5">5</span>
+    <span class="second unit-9">9</span>
+    <span class="separator seconds">s</span>
+  </span>
 </div>
 ```
 
@@ -67,18 +78,18 @@ It is updated every second and the generated html looks like this:
 
 ####:step
 
-Define how often the counter should be updated.
+Define how often the counter should be updated via Javascript.
 Possible steps are:
 <pre>:milliseconds, :seconds, :minutes, :hours, :days</pre>
 
-Default is <pre>:seconds</pre>
+Defaults to the smallest unit value specified.
 
 ####:units
 
 Define which time units should be displayed and how they should be ordered.
 
 Available keys are:
-<pre>:years, :months, :weeks, :days, :hours, :minutes, :seconds, :milliseconds</pre>
+<pre>:millenniums, :centuries, :decades, :years, :months, :weeks, :days, :hours, :minutes, :seconds, :milliseconds, :microseconds, :nanoseconds</pre>
 
 Default is
 ```ruby
@@ -89,11 +100,23 @@ Default is
 Define how different time units are separated from each other.
 
 Available keys are:
-<pre>:years, :months, :weeks, :days, :hours, :minutes, :seconds, :milliseconds</pre>
+<pre>:millenniums, :centuries, :decades, :years, :months, :weeks, :days, :hours, :minutes, :seconds, :milliseconds, :microseconds, :nanoseconds</pre>
 
 Default is
 ```ruby
-{ years: 'Y', months: 'M', weeks: 'w' days: 'd', hours: 'h', minutes: 'm', seconds: 's', milliseconds: 'ms' }
+{ millenniums: {value: 'MN'},
+  centuries: {value: 'C'},
+  decades: {value: 'D'},
+  years: {value: 'Y'},
+  months: {value: 'M'},
+  weeks: {value: 'w'},
+  days: {value: 'd'},
+  hours: {value: 'h'},
+  minutes: {value: 'm'},
+  seconds: {value: 's'},
+  milliseconds: {value: 'ms'},
+  microseconds: {value: 'µs'},
+  nanoseconds: {value: 'ns'} }
 ```
 You can singularize separators by supplying a hash e.g
 ```ruby
