@@ -29,6 +29,7 @@ module TimeSpanner
         from                = Time.parse '2012-06-12 00:00:00'
         time_at_millenniums = Time.parse '3012-06-12 00:00:00'
         to                  = Time.at time_at_millenniums.to_r, -0.001
+        p :from => from, :to => to, :duration => (to.to_r - from.to_r)
         duration            = to.to_r - from.to_r
         millennium          = Millennium.new
 

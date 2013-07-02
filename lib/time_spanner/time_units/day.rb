@@ -10,7 +10,7 @@ module TimeSpanner
 
       private
 
-      def calculate_amount from, to
+      def calculate_amount
         ( to.to_time - from.to_time ).to_i / 86400
       end
 

@@ -10,7 +10,7 @@ module TimeSpanner
 
       private
 
-      def calculate_amount from, to
+      def calculate_amount
         to.year - from.year
       end
 

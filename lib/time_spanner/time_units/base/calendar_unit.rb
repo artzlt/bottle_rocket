@@ -3,24 +3,24 @@ module TimeSpanner
 
     class CalendarUnit < Unit
 
-      attr_accessor :from
+      attr_reader :from, :to
 
       def initialize position
         super position
       end
 
       def calculate duration, to
-        @duration = duration
-        @from     = to - duration.to_r
-        @amount   = calculate_amount from, to
+        @to       = to
+        @from     = @to - duration.to_r
+        @amount   = calculate_amount
 
-        calculate_rest at_amount, to
+        calculate_rest at_amount
       end
 
 
       private
 
-      def calculate_rest from, to
+      def calculate_rest from
         @rest = to.to_r - from.to_r
       end
 
