@@ -40,7 +40,7 @@ Be sure to add `countdown.js` to your layout file:
 ## Usage
 
 ```ruby
- <%= countdown Time.now + 28.hours %>
+ <%= countdown to: Time.now + 28.hours %>
 ```
 results in a countdown like this:
 
@@ -48,7 +48,12 @@ results in a countdown like this:
 1d03h59m59s
 </pre>
 
-It is updated every second and the generated html looks like this:
+or to count down from another time than now:
+```ruby
+ <%= countdown( from: Time.parse( '2012-09-27 01:07:00'), to: Time.now - 2.months  ) %>
+```
+
+The countdown is updated every second and the generated html looks like this:
 
 ```ruby
 <div class="countdown">
