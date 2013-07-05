@@ -32,8 +32,8 @@ Run the generator:
 ```sh
 rails generate countdown:install
 ```
-Running the generator will copy 'countdown.js' over to the `public\javascripts` directory.
-Be sure to add `countdown.js` to your layout file:
+Running the generator will copy 'bottle_rocket.js' over to the `public\javascripts` directory.
+Be sure to add `bottle_rocket.js` to your layout file:
 ```ruby
 <%= javascript_include_tag 'countdown' %>
 ```

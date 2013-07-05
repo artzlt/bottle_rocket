@@ -10,7 +10,7 @@ if ::Rails.version < '3.1' || !::Rails.application.config.assets.enabled
 
         def copy
           say_status('copying', 'countdown', :green)
-          copy_file 'countdown.js', 'public/javascripts/countdown.js'
+          copy_file 'countdown.js', 'public/javascripts/bottle_rocket.js'
         end
       end
     end
@@ -24,7 +24,7 @@ else
         def do_nothing
           say_status('deprecated', 'You are using Rails 3.1 with the asset pipeline enabled, so this generator is not needed.')
           say_status('', 'The necessary files are already in your asset pipeline.')
-          say_status('', 'Just add `//= require countdown` to your app/assets/javascripts/application.js')
+          say_status('', 'Just add `//= require bottle_rocket` to your app/assets/javascripts/application.js')
         end
       end
     end
