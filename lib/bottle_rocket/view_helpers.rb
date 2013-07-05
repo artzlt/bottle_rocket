@@ -1,6 +1,6 @@
-module Countdown
+module BottleRocket
   module ViewHelpers
-    include ::Countdown::TagBuilders
+    include ::BottleRocket::TagBuilders
 
     def countdown(options={})
       safe_buffer CountdownBuilder.new(options).to_html

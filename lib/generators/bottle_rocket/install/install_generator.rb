@@ -2,7 +2,7 @@ require 'rails'
 
 # Supply generator for Rails 3.0.x or if asset pipeline is not enabled
 if ::Rails.version < '3.1' || !::Rails.application.config.assets.enabled
-  module Countdown
+  module BottleRocket
     module Generators
       class InstallGenerator < ::Rails::Generators::Base
         desc 'This generator installs countdown'
@@ -16,7 +16,7 @@ if ::Rails.version < '3.1' || !::Rails.application.config.assets.enabled
     end
   end
 else
-  module Countdown
+  module BottleRocket
     module Generators
       class InstallGenerator < ::Rails::Generators::Base
         desc 'Just show instructions so people will know what to do when mistakenly using generator for Rails 3.1 apps'

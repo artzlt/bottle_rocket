@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'countdown/version'
+require 'bottle_rocket/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'countdown'
-  spec.version       = Countdown::VERSION
+  spec.name          = 'bottle_rocket'
+  spec.version       = BottleRocket::VERSION
   spec.authors       = ['Andreas Busold']
   spec.email         = ['an.bu@gmx.net']
-  spec.description   = %q{Adds a visible countdown to your views, which counts down by supplied steps via JavaScript.}
-  spec.summary       = %q{Adds a visible countdown to your views, which counts down by supplied steps via JavaScript.}
-  spec.homepage      = 'https://github.com/neopoly/countdown'
+  spec.description   = %q{Work in progress! Adds a countdown to your views. Countdown is updated via JavaScript.}
+  spec.summary       = %q{Work in progress! Adds a countdown to your views. Countdown is updated via JavaScript.}
+  spec.homepage      = 'https://github.com/neopoly/bottle_rocket'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)

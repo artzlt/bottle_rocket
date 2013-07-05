@@ -1,8 +1,8 @@
-module Countdown
+module BottleRocket
   module TagBuilders
 
     class UnitContainerBuilder
-      include ::Countdown::ContentTags
+      include ::BottleRocket::ContentTags
 
       attr_reader :unit, :time_unit, :unit_separator
 

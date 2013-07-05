@@ -1,8 +1,8 @@
-module Countdown
+module BottleRocket
   module TagBuilders
 
     class UnitSeparatorBuilder
-      include ::Countdown::ContentTags
+      include ::BottleRocket::ContentTags
 
       DEFAULT_ALIGN       = :after
       DEFAULT_SINGULARIZE = false

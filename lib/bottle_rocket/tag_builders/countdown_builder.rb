@@ -1,11 +1,11 @@
 # encoding: UTF-8
 # TODO: 'railsify' only here -> safe_buffer
 
-module Countdown
+module BottleRocket
   module TagBuilders
 
     class CountdownBuilder
-      include ::Countdown::ContentTags
+      include ::BottleRocket::ContentTags
       include TimeSpanner
 
       DEFAULT_DIRECTION  = :down

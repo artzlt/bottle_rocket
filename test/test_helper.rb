@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/spec'
 require 'minitest/reporters'
-require 'countdown'
+require 'bottle_rocket'
 
 #MiniTest::Reporters.use!
 
@@ -9,5 +9,5 @@ class TestCase < Minitest::Spec
 end
 
 class FakeView
-  include ::Countdown::ViewHelpers
+  include ::BottleRocket::ViewHelpers
 end

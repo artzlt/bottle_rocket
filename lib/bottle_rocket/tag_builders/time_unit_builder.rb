@@ -1,6 +1,6 @@
-module Countdown
+module BottleRocket
   class TimeUnitBuilder
-    include ::Countdown::ContentTags
+    include ::BottleRocket::ContentTags
 
     attr_reader :unit, :value
 

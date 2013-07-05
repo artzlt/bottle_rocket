@@ -1,6 +1,6 @@
 require 'test_helper'
 
-module Countdown
+module BottleRocket
   module ViewHelpers
     class ViewHelpersTest < TestCase
 

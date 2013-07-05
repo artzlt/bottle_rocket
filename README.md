@@ -1,7 +1,8 @@
-countdown
+bottle_rocket
 =========
 
-Adds a visible countdown to your views, which counts down by supplied steps via JavaScript.
+Work in progress!
+Adds a countdown to your views. Countdown is updated via JavaScript.
 
 ## Installation
 

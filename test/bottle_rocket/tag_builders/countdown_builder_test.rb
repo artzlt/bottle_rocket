@@ -1,6 +1,6 @@
 require 'test_helper'
 
-module Countdown
+module BottleRocket
   module TagBuilders
 
     class CountdownBuilderTest < TestCase

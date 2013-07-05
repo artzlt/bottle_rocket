@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    countdown (0.0.1)
+    bottle_rocket (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -48,13 +48,14 @@ GEM
       atomic
     time_spanner (1.0.0)
     tzinfo (0.3.37)
+    win32console (1.3.0-x86-mingw32)
 
 PLATFORMS
-  ruby
+  x86-mingw32
 
 DEPENDENCIES
+  bottle_rocket!
   bundler (~> 1.3)
-  countdown!
   minitest
   minitest-reporters
   railties
