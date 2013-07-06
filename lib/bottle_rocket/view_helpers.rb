@@ -1,13 +1,12 @@
 module BottleRocket
   module ViewHelpers
-    include ::BottleRocket::TagBuilders
 
     def countdown(options={})
-      safe_buffer CountdownBuilder.new(options).to_html
+      safe_buffer Builder.new(options).html
     end
 
     def countup(options={})
-      safe_buffer CountdownBuilder.new(options.merge(direction: :up)).to_html
+      safe_buffer Builder.new(options.merge(direction: :up)).html
     end
 
 
