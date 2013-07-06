@@ -53,23 +53,23 @@ or to count down from another time than now:
 The generated html looks like this:
 ```html
 <div class="countdown">
-  <span class="days">
-    <span class="unit-1">1</span>
+  <span class="unit days">
+    <span class="amount-1">1</span>
     <span class="separator">d</span>
   </span>
-  <span class="hours">
-    <span class="unit-0">0</span>
-    <span class="unit-3">3</span>
+  <span class="unit hours">
+    <span class="amount-0">0</span>
+    <span class="amount-3">3</span>
     <span class="separator">h</span>
   </span>
-  <span class="minutes">
-    <span class="unit-5">5</span>
-    <span class="unit-9">9</span>
+  <span class="unit minutes">
+    <span class="amount-5">5</span>
+    <span class="amount-9">9</span>
     <span class="separator">m</span>
   </span>
-  <span class="seconds">
-    <span class="unit-5">5</span>
-    <span class="unit-9">9</span>
+  <span class="unit seconds">
+    <span class="amount-5">5</span>
+    <span class="amount-9">9</span>
     <span class="separator">s</span>
   </span>
 </div>
