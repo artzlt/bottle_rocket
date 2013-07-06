@@ -1,5 +1,4 @@
 # encoding: UTF-8
-# TODO: 'railsify' only here -> safe_buffer
 
 module BottleRocket
 
@@ -28,7 +27,13 @@ module BottleRocket
     end
 
     def html
-      MainContainer.new(time_span, units, direction, steps, separators).to_html
+      safe_buffer MainContainer.new(time_span, units, direction, steps, separators).to_html
+    end
+
+    private
+
+    def safe_buffer(string)
+      defined?(Rails) ? ActiveSupport::SafeBuffer.new(string) : string
     end
 
   end
