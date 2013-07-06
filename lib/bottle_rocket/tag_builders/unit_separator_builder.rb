@@ -4,29 +4,19 @@ module BottleRocket
     class UnitSeparatorBuilder
       include ::BottleRocket::ContentTags
 
-      DEFAULT_ALIGN       = :after
       DEFAULT_SINGULARIZE = false
 
-      attr_reader :unit, :value, :align, :singular, :singularize
+      attr_reader :unit, :value, :singular, :singularize
 
       def initialize(unit, options={})
         @unit        = unit
         @value       = options.delete(:value)
-        @align       = options.delete(:align) || DEFAULT_ALIGN
         @singular    = options.delete(:singular)
         @singularize = options.delete(:singularize) || DEFAULT_SINGULARIZE
       end
 
       def attributes
         { :class => "separator #{unit}", :'data-singular' => (singular || value), :'data-plural' => value }
-      end
-
-      def after?
-        @align == DEFAULT_ALIGN
-      end
-
-      def before?
-        !after?
       end
 
       def singularize_value

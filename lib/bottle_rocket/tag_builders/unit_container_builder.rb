@@ -18,11 +18,7 @@ module BottleRocket
 
       def to_html
         ContentTag.new(:span, class: unit.to_s).to_s do
-          if unit_separator.after?
-            [time_unit.to_html, unit_separator.to_html].join
-          else
-            [unit_separator.to_html, time_unit.to_html].join
-          end
+          [time_unit.to_html, unit_separator.to_html].join
         end
       end
     end
