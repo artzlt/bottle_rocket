@@ -8,7 +8,7 @@ module BottleRocket
 
       def initialize(unit, unit_value, separator)
         @unit           = unit
-        @time_unit      = AmountContainer.new unit, unit_value
+        @time_unit      = AmountContainer.new unit, unit_value # TODO: split into multiple AmountContainers
         @unit_separator = SeparatorContainer.new separator
       end
 
