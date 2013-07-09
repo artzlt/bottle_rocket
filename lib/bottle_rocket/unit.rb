@@ -20,12 +20,33 @@ module BottleRocket
       nanoseconds:  { title: 'ns' }
     }
 
-    attr_reader :name, :amount, :separator
+    attr_reader :name, :separator
 
-    def initialize name, amount, options
-      @name      = name
-      @amount    = amount
-      @separator = options[:separator] || DEFAULT_SEPARATORS[name]
+    def initialize name, amount, options = {}
+      @name           = name
+      @amount         = amount
+      @separator      = options[:separator] || DEFAULT_SEPARATORS[name]
+      @leading_zeroes = options[:leading_zeroes]
+    end
+
+    def amount
+      zerofy? ? zerofied_amount : @amount.to_s
+    end
+
+    def zerofy?
+      @leading_zeroes
+    end
+
+    # TODO: zerofy all unit types
+    def zerofied_amount
+      case name
+        when :seconds
+          if @amount >= 0 && @amount < 10
+            "0#{@amount}"
+          elsif @amount > -10
+            "-0#{@amount*-1}"
+          end
+      end
     end
 
   end
