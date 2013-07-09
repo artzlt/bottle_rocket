@@ -6,12 +6,10 @@ module BottleRocket
 
       attr_reader :time_span, :units, :direction, :steps, :separators
 
-      def initialize(time_span, units, direction, steps, separators)
-        @time_span  = time_span
+      def initialize(units, direction, steps)
         @units      = units
         @direction  = direction
         @steps      = steps
-        @separators = separators
       end
 
       def attributes
@@ -21,7 +19,7 @@ module BottleRocket
       def to_html
         ContentTag.new(:div, attributes).to_s do
           units.map do |unit|
-            UnitContainer.new(unit, time_span[unit], separators[unit]).to_html
+            UnitContainer.new(unit.name, unit.amount, unit.separator).to_html
           end.join
         end
       end

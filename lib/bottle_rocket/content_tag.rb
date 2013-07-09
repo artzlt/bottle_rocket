@@ -1,7 +1,7 @@
 module BottleRocket
   module ContentTags
 
-    class ContentTag
+    class ContentTag #TODO: rename and use HtmlTag
       attr_reader :tag_type, :attributes
 
       def initialize(tag_type, attributes={})
