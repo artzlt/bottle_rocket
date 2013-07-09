@@ -3,40 +3,40 @@ require 'test_helper'
 module BottleRocket
   module Containers
 
-    class UnitSeparatorBuilderTest < TestCase
+    class SeparatorContainerTest < TestCase
 
       before do
-        @separator_container = SeparatorContainer.new(:minutes, {value: 'm'})
+        separator = Separator.new :minutes
+        @separator_container = SeparatorContainer.new separator
       end
 
       it 'has value' do
         assert_equal 'm', @separator_container.value
       end
 
-      it 'has unit' do
-        assert_equal :minutes, @separator_container.unit
-      end
-
-      it 'singularizes' do
-        separator_container = SeparatorContainer.new(:minutes, {value: 'minutes', singularize: true, singular: 'minute' })
+      it 'singularizes value' do
+        separator = Separator.new :minutes, singular: 'minute', singularize: true
+        separator_container = SeparatorContainer.new separator
 
         assert_equal 'minute', separator_container.singularize_value
       end
 
-      it 'does not singularize if no singular value is given' do
-        separator_container = SeparatorContainer.new(:minutes, {value: 'minutes', singularize: true })
+      it 'uses title when no singular title is given' do
+        separator = Separator.new :minutes, singularize: true
+        separator_container = SeparatorContainer.new separator
 
-        assert_equal 'minutes', separator_container.singularize_value
+        assert_equal 'm', separator_container.singularize_value
       end
 
-      it 'does not singularize when disabled' do
-        separator_container = SeparatorContainer.new(:minutes, {value: 'minutes', singularize: false, singular: 'minute' })
+      it 'uses title when it does not singularize' do
+        separator = Separator.new :minutes, singular: 'minute', singularize: false
+        separator_container = SeparatorContainer.new separator
 
-        assert_equal 'minutes', separator_container.singularize_value
+        assert_equal 'm', separator_container.singularize_value
       end
 
       it 'creates html' do
-        expected = '<span class="separator minutes" data-singular="m" data-plural="m">m</span>'
+        expected = '<span class="separator" data-singular="m" data-plural="m">m</span>'
 
         assert_equal expected, @separator_container.to_html
       end

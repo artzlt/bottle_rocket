@@ -6,21 +6,20 @@ module BottleRocket
 
       DEFAULT_SINGULARIZE = false
 
-      attr_reader :unit, :value, :singular, :singularize
+      attr_reader :value, :singular, :singularize
 
-      def initialize(unit, options={})
-        @unit        = unit
-        @value       = options.delete(:value)
-        @singular    = options.delete(:singular)
-        @singularize = options.delete(:singularize) || DEFAULT_SINGULARIZE
+      def initialize(separator)
+        @value       = separator.title
+        @singular    = separator.singular_title
+        @singularize = separator.singularize?
       end
 
       def attributes
-        { :class => "separator #{unit}", :'data-singular' => (singular || value), :'data-plural' => value }
+        { :class => "separator", :'data-singular' => singular, :'data-plural' => value }
       end
 
       def singularize_value
-        singular && singularize ? singular : value
+        singularize ? singular : value
       end
 
       def to_html

@@ -12,8 +12,8 @@ module BottleRocket
       assert_equal '1', unit.amount
       refute unit.zerofy?
 
-      expected_separator = { title: "s"}
-      assert_equal expected_separator, unit.separator
+      expected_separator = 's'
+      assert_equal expected_separator, unit.separator.title
     end
 
     it 'handles custom separator' do
@@ -23,8 +23,8 @@ module BottleRocket
       assert_equal :seconds, unit.name
       assert_equal '1', unit.amount
 
-      expected_separator = { title: "blah"}
-      assert_equal expected_separator, unit.separator
+      expected_separator = "blah"
+      assert_equal expected_separator, unit.separator.title
     end
 
     it 'accepts leading zeroes (positive)' do
@@ -39,6 +39,22 @@ module BottleRocket
 
       assert unit.zerofy?
       assert_equal '-09', unit.amount
+    end
+
+    it 'singularizes' do
+      [-1, 1].each do |n|
+        unit = Unit.new(:minutes, n)
+
+        assert unit.singularize?
+      end
+    end
+
+    it 'does not singularize' do
+      [3, -4].each do |n|
+        unit = Unit.new(:minutes, n)
+
+        refute unit.singularize?
+      end
     end
 
   end

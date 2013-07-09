@@ -17,7 +17,7 @@ module BottleRocket
         assert_equal Builder::DEFAULT_UNITS, @builder.units.map(&:name)
 
         @builder.units.each do |unit|
-          assert_equal Unit::DEFAULT_SEPARATORS[unit.name], unit.separator
+          assert_equal Separator::DEFAULT_SEPARATORS[unit.name][:title], unit.separator.title
         end
 
       end
@@ -34,8 +34,8 @@ module BottleRocket
         builder = Builder.new(from: @from, to: @to, units: [ seconds: { separator: { title: 'Sek.'}} ])
 
         assert_equal :seconds, builder.units.first.name
-        expected = { title: 'Sek.' }
-        assert_equal expected, builder.units.first.separator
+        expected = 'Sek.'
+        assert_equal expected, builder.units.first.separator.title
       end
 
       it 'initializes with default and custom options' do
@@ -43,12 +43,12 @@ module BottleRocket
 
         assert_equal 2, builder.units.size
         assert_equal :minutes, builder.units.first.name
-        expected = { title: 'm' }
-        assert_equal expected, builder.units.first.separator
+        expected = 'm'
+        assert_equal expected, builder.units.first.separator.title
 
         assert_equal :seconds, builder.units.last.name
-        expected = { title: 'Sek.' }
-        assert_equal expected, builder.units.last.separator
+        expected = 'Sek.'
+        assert_equal expected, builder.units.last.separator.title
       end
 
       it 'creates html' do

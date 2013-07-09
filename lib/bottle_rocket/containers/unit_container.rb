@@ -6,14 +6,10 @@ module BottleRocket
 
       attr_reader :unit, :time_unit, :unit_separator
 
-      def initialize(unit, unit_value, separator_options)
+      def initialize(unit, unit_value, separator)
         @unit           = unit
         @time_unit      = AmountContainer.new unit, unit_value
-        @unit_separator = SeparatorContainer.new unit, separator_options.merge(singularize: singularize?)
-      end
-
-      def singularize?
-        time_unit.one?
+        @unit_separator = SeparatorContainer.new separator
       end
 
       def to_html

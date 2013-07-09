@@ -6,7 +6,8 @@ module BottleRocket
     class UnitContainerTest < TestCase
 
       before do
-        @unit_container = UnitContainer.new(:minutes, 1, {value: 'm'})
+        separator = Separator.new :minutes
+        @unit_container = UnitContainer.new(:minutes, 1, separator)
       end
 
       it 'has unit' do
@@ -21,18 +22,8 @@ module BottleRocket
         assert @unit_container.unit_separator.is_a?(SeparatorContainer)
       end
 
-      it 'singularizes' do
-        assert @unit_container.singularize?
-      end
-
-      it 'does not singularize' do
-        unit_container = UnitContainer.new(:minutes, 0, {value: 'm'})
-
-        refute unit_container.singularize?
-      end
-
       it 'creates html' do
-        expected = '<span class="minutes"><span class="minutes-1">1</span><span class="separator minutes" data-singular="m" data-plural="m">m</span></span>'
+        expected = '<span class="minutes"><span class="minutes-1">1</span><span class="separator" data-singular="m" data-plural="m">m</span></span>'
 
         assert_equal expected, @unit_container.to_html
       end
