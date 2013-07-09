@@ -37,15 +37,11 @@ module BottleRocket
       @leading_zeroes
     end
 
-    # TODO: zerofy all unit types
     def zerofied_amount
-      case name
-        when :seconds
-          if @amount >= 0 && @amount < 10
-            "0#{@amount}"
-          elsif @amount > -10
-            "-0#{@amount*-1}"
-          end
+      if @amount >= 0 && @amount < 10
+        "0#{@amount}"
+      elsif @amount > -10
+        "-0#{@amount*-1}"
       end
     end
 
