@@ -6,26 +6,60 @@ module BottleRocket
     class UnitContainerTest < TestCase
 
       before do
-        separator = Separator.new :minutes
-        @unit_container = UnitContainer.new(:minutes, 1, separator)
+        @unit = Unit.new :minutes, 1
+        @unit_container = UnitContainer.new @unit
       end
 
       it 'has unit' do
-        assert_equal :minutes, @unit_container.unit
+        assert_equal @unit, @unit_container.unit
       end
 
-      it 'has amount' do
-        assert @unit_container.time_unit.is_a?(AmountContainer)
+      it 'has separator container' do
+        assert @unit_container.separator_container.is_a?(SeparatorContainer)
       end
 
-      it 'has separator' do
-        assert @unit_container.unit_separator.is_a?(SeparatorContainer)
+      describe 'single numbered amount' do
+
+        it 'has amount container' do
+          assert @unit_container.amount_containers.first.is_a?(AmountContainer)
+        end
+
+        it 'creates html' do
+          expected = '<span class="minutes"><span class="amount-1">1</span><span class="separator" data-singular="m" data-plural="m">m</span></span>'
+
+          assert_equal expected, @unit_container.to_html
+        end
+
       end
 
-      it 'creates html' do
-        expected = '<span class="minutes"><span class="minutes-1">1</span><span class="separator" data-singular="m" data-plural="m">m</span></span>'
+      describe 'multi-numbered amount' do
 
-        assert_equal expected, @unit_container.to_html
+        it 'has multiple amount containers' do
+          unit = Unit.new :minutes, 12
+          unit_container = UnitContainer.new unit
+
+          assert_equal 2, unit_container.amount_containers.size
+          assert_equal '1', unit_container.amount_containers.first.value
+          assert_equal '2', unit_container.amount_containers.last.value
+        end
+
+        it 'handles negative unit' do
+          unit = Unit.new :minutes, -12
+          unit_container = UnitContainer.new unit
+
+          assert_equal '-1', unit_container.amount_containers.first.value
+          assert_equal '2', unit_container.amount_containers.last.value
+        end
+
+        it 'creates html' do
+          unit = Unit.new :minutes, 37
+          unit_container = UnitContainer.new unit
+
+          expected = '<span class="minutes"><span class="amount-3">3</span><span class="amount-7">7</span><span class="separator" data-singular="m" data-plural="m">m</span></span>'
+
+          assert_equal expected, unit_container.to_html
+        end
+
       end
 
     end

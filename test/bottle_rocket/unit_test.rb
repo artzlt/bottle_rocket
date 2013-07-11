@@ -9,8 +9,8 @@ module BottleRocket
 
       assert unit.is_a? Unit
       assert_equal :seconds, unit.name
-      assert_equal '1', unit.amount
-      refute unit.zerofy?
+      assert_equal 1, unit.amount
+      assert_equal '1', unit.stringified_amount
 
       expected_separator = 's'
       assert_equal expected_separator, unit.separator.title
@@ -21,7 +21,7 @@ module BottleRocket
 
       assert unit.is_a? Unit
       assert_equal :seconds, unit.name
-      assert_equal '1', unit.amount
+      assert_equal '1', unit.stringified_amount
 
       expected_separator = "blah"
       assert_equal expected_separator, unit.separator.title
@@ -30,15 +30,13 @@ module BottleRocket
     it 'accepts leading zeroes (positive)' do
       unit = Unit.new :seconds, 5, leading_zeroes: true
 
-      assert unit.zerofy?
-      assert_equal '05', unit.amount
+      assert_equal '05', unit.stringified_amount
     end
 
     it 'accepts leading zeroes (negative)' do
       unit = Unit.new :seconds, -9, leading_zeroes: true
 
-      assert unit.zerofy?
-      assert_equal '-09', unit.amount
+      assert_equal '-09', unit.stringified_amount
     end
 
     it 'singularizes' do

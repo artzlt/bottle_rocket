@@ -19,7 +19,7 @@ module BottleRocket
       def to_html
         ContentTag.new(:div, attributes).to_s do
           units.map do |unit|
-            UnitContainer.new(unit.name, unit.amount, unit.separator).to_html
+            UnitContainer.new(unit).to_html
           end.join
         end
       end

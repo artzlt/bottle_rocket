@@ -2,7 +2,7 @@ module BottleRocket
 
   class Unit
 
-    attr_reader :name, :separator
+    attr_reader :name, :amount, :separator
 
     def initialize name, amount, options = {}
       @name           = name
@@ -11,13 +11,16 @@ module BottleRocket
       @leading_zeroes = options[:leading_zeroes]
     end
 
-    def amount
-      zerofy? ? zerofied_amount : @amount.to_s
+    def stringified_amount
+      zerofy? ? zerofy_amount : amount.to_s
     end
 
     def singularize?
-      [-1, 1].include? @amount
+      [-1, 1].include? amount
     end
+
+
+    private
 
     def setup_separator(separator_options)
       options = ( separator_options || {} ).merge( { singularize: singularize?} )
@@ -25,14 +28,14 @@ module BottleRocket
     end
 
     def zerofy?
-      @leading_zeroes
+      !!@leading_zeroes
     end
 
-    def zerofied_amount
-      if @amount >= 0 && @amount < 10
-        "0#{@amount}"
-      elsif @amount > -10
-        "-0#{@amount*-1}"
+    def zerofy_amount
+      if amount >= 0 && amount < 10
+        "0#{amount}"
+      elsif amount > -10
+        "-0#{amount*-1}"
       end
     end
 

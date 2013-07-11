@@ -4,15 +4,14 @@ module BottleRocket
     class AmountContainer
       include ::BottleRocket::ContentTags
 
-      attr_reader :unit, :value
+      attr_reader :value
 
-      def initialize(unit, value)
-        @unit  = unit
+      def initialize(value)
         @value = value
       end
 
       def to_html
-        ContentTag.new(:span, class: "#{unit}-#{value}").to_s do
+        ContentTag.new(:span, class: "amount-#{value}").to_s do
           value.to_s
         end
       end
