@@ -11,6 +11,10 @@ module BottleRocket
       @leading_zeroes = options[:leading_zeroes]
     end
 
+    def min
+      0
+    end
+
     def stringified_amount
       zerofy? ? zerofy_amount : amount.to_s
     end

@@ -12,8 +12,12 @@ module BottleRocket
         @separator_container = SeparatorContainer.new unit.separator
       end
 
+      def attributes
+        { :class => unit.name.to_s, :'data-amount' => unit.amount, :'data-min-amount' => unit.min }
+      end
+
       def to_html
-        ContentTag.new(:span, class: unit.name.to_s).to_s do
+        ContentTag.new(:span, attributes).to_s do
           [amount_containers.map(&:to_html).join, separator_container.to_html].join
         end
       end
