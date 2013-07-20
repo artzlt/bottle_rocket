@@ -14,7 +14,7 @@ module BottleRocket
       end
 
       it 'creates html' do
-        assert_equal '<span class="amount-1">1</span>', @amount_container.to_html
+        assert_equal '<span class="amount amount-1">1</span>', @amount_container.to_html
       end
     end
 

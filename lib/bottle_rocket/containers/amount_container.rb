@@ -11,7 +11,7 @@ module BottleRocket
       end
 
       def to_html
-        ContentTag.new(:span, class: "amount-#{value}").to_s do
+        ContentTag.new(:span, class: "amount amount-#{value}").to_s do
           value.to_s
         end
       end

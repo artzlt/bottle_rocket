@@ -25,7 +25,7 @@ module BottleRocket
         end
 
         it 'creates html' do
-          expected = '<span class="minutes" data-amount="1" data-min-amount="0"><span class="amount-1">1</span><span class="separator" data-singular="m" data-plural="m">m</span></span>'
+          expected = '<span class="minutes" data-amount="1" data-min-amount="0"><span class="amount amount-1">1</span><span class="separator" data-singular="m" data-plural="m">m</span></span>'
 
           assert_equal expected, @unit_container.to_html
         end
@@ -55,7 +55,7 @@ module BottleRocket
           unit = Unit.new :minutes, 37
           unit_container = UnitContainer.new unit
 
-          expected = '<span class="minutes" data-amount="37" data-min-amount="0"><span class="amount-3">3</span><span class="amount-7">7</span><span class="separator" data-singular="m" data-plural="m">m</span></span>'
+          expected = '<span class="minutes" data-amount="37" data-min-amount="0"><span class="amount amount-3">3</span><span class="amount amount-7">7</span><span class="separator" data-singular="m" data-plural="m">m</span></span>'
 
           assert_equal expected, unit_container.to_html
         end
