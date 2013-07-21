@@ -9,26 +9,28 @@ $(document).ready(function() {
         var interval                 = set_interval(steps);
         var interval_unit_container  = me.find('.'+steps);
         var preceding_unit_container = interval_unit_container.prev();
-        var total_amount             = parseInt(interval_unit_container.data('amount'));
-        var max_amount               = 59;
+        var amount                   = amount_for(interval_unit_container);
+        var max_amount               = 59; // me.data('max-amount');
 
         var update = function() {
+            var preceding_amount = amount_for(preceding_unit_container);
+
             if (direction == 'up') {
-                var new_amount = ++total_amount;
-                if (total_amount == max_amount) { total_amount = -1 }
-            } else {
-                var new_amount = --total_amount;
-                if (new_amount == -1) { total_amount = max_amount }
-            }
+                amount < max_amount ? amount++ : amount = 0;
+                update_amount_containers(interval_unit_container, amount);
 
-            update_amount_containers(interval_unit_container, new_amount);
+                if (amount == 0 && preceding_unit_container.size() > 0) {
+                    preceding_amount++;
+                    update_amount_containers(preceding_unit_container, preceding_amount);
+                }
+            } else { // direction is 'down'
+                amount > 0 ? amount-- : amount = max_amount;
+                update_amount_containers(interval_unit_container, amount);
 
-            //TODO: handle countup update on preceding unit
-            if (new_amount == -1 && preceding_unit_container) {
-                var preceding_amount = parseInt(preceding_unit_container.data('amount'));
-                preceding_amount = direction == 'up' ? ++preceding_amount : --preceding_amount;
-
-                update_amount_containers(preceding_unit_container, preceding_amount);
+                if (amount == max_amount && preceding_unit_container.size() > 0) {
+                    preceding_amount--;
+                    update_amount_containers(preceding_unit_container, preceding_amount);
+                }
             }
 
             elapsed += interval;
@@ -57,8 +59,11 @@ var set_interval = function(steps) {
     }
 }
 
+var amount_for = function(container) {
+    return parseInt(container.data('amount'));
+}
+
 var update_amount_containers = function(parent, amount) {
-    //TODO: fix negative amount (splitting of ['-', '1'])
     parent.find('.amount').remove();
 
     $(amount.toString().split('')).each(function(){
