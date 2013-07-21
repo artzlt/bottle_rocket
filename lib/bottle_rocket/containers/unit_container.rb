@@ -13,7 +13,7 @@ module BottleRocket
       end
 
       def attributes
-        { :class => unit.name.to_s, :'data-amount' => unit.amount, :'data-min-amount' => unit.min }
+        { :class => unit.name.to_s, :'data-amount' => unit.amount, :'data-max-amount' => unit.max }
       end
 
       def to_html

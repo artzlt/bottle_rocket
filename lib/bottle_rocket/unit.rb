@@ -11,8 +11,8 @@ module BottleRocket
       @leading_zeroes = options[:leading_zeroes]
     end
 
-    def min
-      0
+    def max
+      59
     end
 
     def stringified_amount

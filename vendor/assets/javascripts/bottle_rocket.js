@@ -10,7 +10,7 @@ $(document).ready(function() {
         var interval_unit_container  = me.find('.'+steps);
         var preceding_unit_container = interval_unit_container.prev();
         var amount                   = amount_for(interval_unit_container);
-        var max_amount               = 59; // me.data('max-amount');
+        var max_amount               = interval_unit_container.data('max-amount');
 
         var update = function() {
             var preceding_amount = amount_for(preceding_unit_container);
