@@ -164,25 +164,3 @@ For a reverse countdown starting at 00:00:00 use the countup method using the sa
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
-
-TimeSpan.new(Time.now, Time.at((Time.now+1331054).to_f, 234254235.234)):
-
-Updates (step milliseconds):
-update every second with 1st ms number counting from 9 to 0, for last 2 numbers use random millisecond values
-Ajax reload if amount of hours (or amount of units before) changes.
-Or: reload if max-value of unit before hours is reached (zero!). Makes sense because even if hour switch is not reached it its trieggered a few seconds later again.
-
-{:days=>15, :hours=>9, :minutes=>48, :seconds=>8, :milliseconds=>       254} ; max-value: 999
-{:days=>15, :hours=>9, :minutes=>48,              :milliseconds=>      8254} ; max-value: 59999
-{:days=>15, :hours=>9,                            :milliseconds=>   2888254} ; max-value: 3599999
-{:days=>15,                                       :milliseconds=>  35288254} ; max-value: 86399999
-{                                                 :milliseconds=>1331288254} ; max-value: -
-
-Updates (step seconds): update every second
-
-{:days=>15, :hours=>9, :minutes=>48, :seconds=>      8} ; max-value: 59
-{:days=>15, :hours=>9,               :seconds=>   2888} ; max-value: 3599
-{:days=>15                           :seconds=>1331288} ; max-value: 86399
-
-max-value always depends on previous value!

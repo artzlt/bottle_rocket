@@ -19,6 +19,15 @@ module BottleRocket
         assert @unit_container.separator_container.is_a?(SeparatorContainer)
       end
 
+      it 'has data-max-amount attribute' do
+        assert_equal 59, @unit_container.attributes[:"data-max-amount"]
+      end
+
+      it 'has no data-max-amount attribute' do
+        @unit.max = nil
+        refute @unit_container.attributes[:"data-max-amount"]
+      end
+
       describe 'single numbered amount' do
 
         it 'has amount container' do

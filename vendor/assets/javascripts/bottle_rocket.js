@@ -45,9 +45,11 @@ $(document).ready(function() {
 var set_steps = function(parent) {
     var steps = parent.data('steps');
     if (parent.find('.'+steps).size() > 0) {
+        if (steps = 'milliseconds') { steps = 'seconds'}
         return steps;
     }
     else {
+        // preceding
         return parent.children().last().attr('class');
     }
 }

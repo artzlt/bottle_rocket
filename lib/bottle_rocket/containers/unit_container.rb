@@ -13,7 +13,12 @@ module BottleRocket
       end
 
       def attributes
-        { :class => unit.name.to_s, :'data-amount' => unit.amount, :'data-max-amount' => unit.max }
+        attrs = { :class => unit.name.to_s, :'data-amount' => unit.amount }
+
+        if unit.max
+          attrs[:'data-max-amount'] = unit.max
+        end
+        attrs
       end
 
       def to_html
