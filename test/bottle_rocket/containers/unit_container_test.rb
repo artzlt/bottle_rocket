@@ -7,6 +7,7 @@ module BottleRocket
 
       before do
         @unit = Unit.new :minutes, 1
+        @unit.max = 59
         @unit_container = UnitContainer.new @unit
       end
 
@@ -53,9 +54,10 @@ module BottleRocket
 
         it 'creates html' do
           unit = Unit.new :minutes, 37
+          unit.max = 3599
           unit_container = UnitContainer.new unit
 
-          expected = '<span class="minutes" data-amount="37" data-max-amount="59"><span class="amount amount-3">3</span><span class="amount amount-7">7</span><span class="separator" data-singular="m" data-plural="m">m</span></span>'
+          expected = '<span class="minutes" data-amount="37" data-max-amount="3599"><span class="amount amount-3">3</span><span class="amount amount-7">7</span><span class="separator" data-singular="m" data-plural="m">m</span></span>'
 
           assert_equal expected, unit_container.to_html
         end

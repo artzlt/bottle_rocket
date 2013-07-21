@@ -5,6 +5,7 @@ require 'bottle_rocket/content_tag'
 require 'bottle_rocket/containers'
 require 'bottle_rocket/separator'
 require 'bottle_rocket/unit'
+require 'bottle_rocket/unit_list'
 require 'bottle_rocket/builder'
 require 'bottle_rocket/view_helpers'
 

@@ -10,7 +10,7 @@ module BottleRocket
     DEFAULT_STEPS      = :seconds
     DEFAULT_UNITS      = [ :days, :hours, :minutes, :seconds ]
 
-    attr_reader :direction, :steps, :units, :from, :to
+    attr_reader :direction, :steps, :units, :unit_list, :from, :to
 
     def initialize options
       now   = Time.now
@@ -20,11 +20,12 @@ module BottleRocket
       @direction = options[:direction] || DEFAULT_DIRECTION
       @steps     = options[:steps] || DEFAULT_STEPS
       @units     = setup_units( options[:units] || [] )
+      @unit_list = UnitList.new units
     end
 
     # TODO: MainContainer.new doesn't feel good (Formatter?)
     def html
-      safe_buffer MainContainer.new( units, direction, steps ).to_html
+      safe_buffer MainContainer.new( unit_list, direction, steps ).to_html
     end
 
     private

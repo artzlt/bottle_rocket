@@ -2,17 +2,14 @@ module BottleRocket
 
   class Unit
 
-    attr_reader :name, :amount, :separator
+    attr_reader   :name, :amount, :separator
+    attr_accessor :max
 
     def initialize name, amount, options = {}
       @name           = name
       @amount         = amount
       @separator      = setup_separator options[:separator]
       @leading_zeroes = options[:leading_zeroes]
-    end
-
-    def max
-      59
     end
 
     def stringified_amount
