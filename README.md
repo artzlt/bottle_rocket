@@ -1,5 +1,21 @@
-bottle_rocket
-=========
+[github]: https://github.com/neopoly/bottle_rocket
+[doc]: http://rubydoc.info/github/neopoly/bottle_rocket/master/file/README.md
+[gem]: https://rubygems.org/gems/bottle_rocket
+[travis]: https://travis-ci.org/neopoly/bottle_rocket
+[codeclimate]: https://codeclimate.com/github/neopoly/bottle_rocket
+[inchpages]: https://inch-ci.org/github/neopoly/bottle_rocket
+
+# bottle_rocket
+
+[![Travis](https://img.shields.io/travis/neopoly/bottle_rocket.svg?branch=master)][travis]
+[![Gem Version](https://img.shields.io/gem/v/bottle_rocket.svg)][gem]
+[![Code Climate](https://img.shields.io/codeclimate/github/neopoly/bottle_rocket.svg)][codeclimate]
+[![Test Coverage](https://codeclimate.com/github/neopoly/bottle_rocket/badges/coverage.svg)][codeclimate]
+[![Inline docs](https://inch-ci.org/github/neopoly/bottle_rocket.svg?branch=master&style=flat)][inchpages]
+
+[Gem][gem] |
+[Source][github] |
+[Documentation][doc]
 
 :construction: Work in progress!
 
