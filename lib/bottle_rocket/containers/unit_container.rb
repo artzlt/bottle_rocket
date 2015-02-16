@@ -30,7 +30,7 @@ module BottleRocket
       private
 
       def splitted_numbers
-        numbers = unit.amount.to_s.chars - ['-']
+        numbers = unit.amount.to_s.chars.to_a - ['-']
         numbers[0] = (numbers[0].to_i*-1).to_s if unit.amount < 0
         numbers
       end
