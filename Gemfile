@@ -11,3 +11,7 @@ group :test do
   gem 'minitest'
   gem 'minitest-reporters'
 end
+
+if ENV['CODECLIMATE_REPO_TOKEN']
+  gem "codeclimate-test-reporter", :group => :test, :require => nil
+end
