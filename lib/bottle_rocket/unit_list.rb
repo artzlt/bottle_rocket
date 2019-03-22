@@ -23,7 +23,7 @@ module BottleRocket
     private
 
     def set_max_amounts
-      units.select { |unit| [:milliseconds, :seconds, :minutes].include? unit.name }.each do |unit|
+      units.select { |unit| [:milliseconds, :seconds, :minutes, :hours].include? unit.name }.each do |unit|
         unit.max = max_for unit
       end
     end
@@ -33,14 +33,19 @@ module BottleRocket
 
       case unit.name
         when :milliseconds
-          return 999     if preceding == :seconds || preceding.nil?
-          return 59999   if preceding == :minutes
-          return 3499999 if preceding == :hours
+          return 1000 - 1                if preceding == :seconds
+          return 60 * 1000 - 1           if preceding == :minutes
+          return 60 * 60 * 1000 - 1      if preceding == :hours
+          return 24 * 60 * 60 * 1000 - 1 if preceding == :days
         when :seconds
-          return 59   if preceding == :minutes || preceding.nil?
-          return 3599 if preceding == :hours
+          return 60 - 1                  if preceding == :minutes
+          return 60 * 60 - 1             if preceding == :hours
+          return 24 * 60 * 60 - 1        if preceding == :days
         when :minutes
-          return 59   if preceding == :hours || preceding.nil?
+          return 60 - 1                  if preceding == :hours
+          return 24 * 60 - 1             if preceding == :days
+        when :hours
+          return 24 - 1                  if preceding == :days
       end
     end
 
@@ -50,11 +55,16 @@ module BottleRocket
           return :seconds if names.include? :seconds
           return :minutes if names.include? :minutes
           return :hours   if names.include? :hours
+          return :days    if names.include? :days
         when :seconds
           return :minutes if names.include? :minutes
           return :hours   if names.include? :hours
+          return :days    if names.include? :days
         when :minutes
           return :hours   if names.include? :hours
+          return :days    if names.include? :days
+        when :hours
+          return :days    if names.include? :days
       end
     end
 

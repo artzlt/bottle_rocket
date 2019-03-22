@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = BottleRocket::VERSION
   spec.authors       = ['Andreas Busold']
   spec.email         = ['an.bu@gmx.net']
-  spec.description   = %q{Work in progress! Adds a countdown to your views. Countdown is updated via JavaScript.}
-  spec.summary       = %q{Work in progress! Adds a countdown to your views. Countdown is updated via JavaScript.}
+  spec.description   = %q{Adds a countdown element to your views. Countdown is updated via JavaScript.}
+  spec.summary       = %q{Adds a countdown element to your views. Countdown is updated via JavaScript.}
   spec.homepage      = 'https://github.com/neopoly/bottle_rocket'
   spec.license       = 'MIT'
 

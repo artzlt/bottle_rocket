@@ -1,5 +1,5 @@
-[github]: https://github.com/neopoly/bottle_rocket
-[doc]: http://rubydoc.info/github/neopoly/bottle_rocket/master/file/README.md
+[github]: https://github.com/artzlt/bottle_rocket
+[doc]: https://www.rubydoc.info/github/artzlt/bottle_rocket/master
 [gem]: https://rubygems.org/gems/bottle_rocket
 [travis]: https://travis-ci.org/neopoly/bottle_rocket
 [codeclimate]: https://codeclimate.com/github/neopoly/bottle_rocket
@@ -17,9 +17,7 @@
 [Source][github] |
 [Documentation][doc]
 
-:construction: Work in progress!
-
-Place a countdown on your view! It'll be updated by JavaScript.
+Place a countdown element on your view! It'll be updated by JavaScript.
 
 Use the framework of your choice. A generator is only available for Rails, though.
 
@@ -34,7 +32,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install countdown
+    $ gem install bottle_rocket
 
 ### Rails 3.1 or greater (with asset pipeline *enabled*)
 
@@ -56,7 +54,7 @@ Running the generator will copy 'bottle_rocket.js' over to the `public\javascrip
 Be sure to add `bottle_rocket.js` to your layout file:
 
 ```ruby
-<%= javascript_include_tag 'countdown' %>
+<%= javascript_include_tag 'bottle_rocket' %>
 ```
 
 *To make Javascript updates work on other frameworks download the file from 'vendor/assets' manually and place it in the corresponding directory.*
@@ -64,7 +62,7 @@ Be sure to add `bottle_rocket.js` to your layout file:
 ## Usage
 
 ```ruby
- <%= countdown from: Time.now + 28.hours %>
+ <%= countdown to: Time.now + 28.hours %>
 ```
 
 results in a countdown like this:
@@ -105,13 +103,13 @@ The generated html looks like this:
 </div>
 ```
 
-###:units
+### :units
 
 Select which time units should be displayed. The given order affects the output of the result.
 
 Available keys are:
 
-<pre>:millenniums, :centuries, :decades, :years, :months, :weeks, :days, :hours, :minutes, :seconds, :milliseconds, :microseconds, :nanoseconds</pre>
+<pre>:days, :hours, :minutes, :seconds, :milliseconds</pre>
 
 Default is
 
@@ -135,7 +133,7 @@ results in a countdown like this:
 
 When you want to modify a unit using options supply the unit as a Hash. Additional units supplied as symbols are not affected.
 
-####:separators
+#### :separators
 
 Define how different time units are separated from each other.
 
@@ -160,7 +158,7 @@ nanoseconds:  'ns'
 Example to overwrite the 'days' separator:
 
 ```ruby
-<%= countdown to: Time.now + 2.months, units: [ { days: { separator: { title: 'T' } } ] %>
+<%= countdown to: Time.now + 2.months, units: [{ days: { separator: { title: 'T' } } }] %>
 ```
 
 results in a countdown like this:
@@ -172,7 +170,7 @@ results in a countdown like this:
 To singularize separators on '1' and '-1' pass an additional 'singular' option:
 
 ```ruby
-<%= countdown to: Time.now + 1.day, units: [ { days: { separator: { title: 'days', singular: 'day' } } ] %>
+<%= countdown to: Time.now + 1.day, units: [{ days: { separator: { title: 'days', singular: 'day' } } }] %>
 ```
 
 results in a countdown like this:
@@ -181,7 +179,7 @@ results in a countdown like this:
 1 day
 </pre>
 
-####:leading_zeroes
+#### :leading_zeroes
 
 You can add leading zeroes to units. Nice to have when using a 'clock-like' countdown.
 
@@ -190,7 +188,7 @@ Defaults to <pre>false</pre>
 Example:
 
 ```ruby
- <%= countdown to: Time.now + 124.minutes, units: [ { hours: { separator: { title: ':' }, leading_zeroes: true }, minutes: { separator: { title: ':' }, leading_zeroes: true }, seconds: { leading_zeroes: true } ] %>
+ <%= countdown to: Time.now + 124.minutes, units: [{ hours: { separator: { title: ':' }, leading_zeroes: true } }, { minutes: { separator: { title: ':' }, leading_zeroes: true } }, { seconds: { leading_zeroes: true } }] %>
 ```
 
 results in a countdown like this:
@@ -199,21 +197,21 @@ results in a countdown like this:
 02:04:00
 </pre>
 
-####:step
+#### :steps
 
 Define how often the countdown should be updated via Javascript.
 
 Possible steps are:
 <pre>:milliseconds, :seconds, :minutes, :hours, :days</pre>
-Defaults to the smallest unit value specified (uses seconds when no step and no units are specified).
+Defaults to the smallest unit value specified (uses seconds when no steps and no units are specified).
 
 Example:
 ```ruby
-<%= countdown to: Time.now + 1.day, step: :minutes %>
+<%= countdown to: Time.now + 1.day, steps: :minutes %>
 ```
 will update the countdown every minute.
 
-## Countup
+### Countup
 
 For a reverse countdown starting at 00:00:00 use the countup method using the same options:
 ```ruby

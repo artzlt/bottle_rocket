@@ -9,8 +9,8 @@ if ::Rails.version < '3.1' || !::Rails.application.config.assets.enabled
         source_root File.expand_path('../../../../../vendor/assets/javascripts', __FILE__)
 
         def copy
-          say_status('copying', 'countdown', :green)
-          copy_file 'countdown.js', 'public/javascripts/bottle_rocket.js'
+          say_status('copying', 'bottle_rocket', :green)
+          copy_file 'bottle_rocket.js', 'public/javascripts/bottle_rocket.js'
         end
       end
     end
